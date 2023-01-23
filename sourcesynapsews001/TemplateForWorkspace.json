@@ -284,6 +284,39 @@
 			]
 		},
 		{
+			"name": "[concat(parameters('workspaceName'), '/TDOC_Trigger')]",
+			"type": "Microsoft.Synapse/workspaces/triggers",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"annotations": [],
+				"runtimeState": "Stopped",
+				"pipelines": [
+					{
+						"pipelineReference": {
+							"referenceName": "Test Pipeline",
+							"type": "PipelineReference"
+						},
+						"parameters": {
+							"pl_param_fileName": "@triggerBody().fileName",
+							"pl_param_folderPath": "@triggerBody().folderPath"
+						}
+					}
+				],
+				"type": "BlobEventsTrigger",
+				"typeProperties": {
+					"blobPathBeginsWith": "/source/blobs/",
+					"ignoreEmptyBlobs": true,
+					"scope": "/subscriptions/be7051ef-9485-4207-b746-9f6a24b3cc8a/resourceGroups/testrg/providers/Microsoft.Storage/storageAccounts/strsynwstdoc001",
+					"events": [
+						"Microsoft.Storage.BlobCreated"
+					]
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('workspaceId'), '/pipelines/Test Pipeline')]"
+			]
+		},
+		{
 			"name": "[concat(parameters('workspaceName'), '/AutoResolveIntegrationRuntime')]",
 			"type": "Microsoft.Synapse/workspaces/integrationRuntimes",
 			"apiVersion": "2019-06-01-preview",
