@@ -227,12 +227,12 @@
 					"url": "[parameters('ls_target_properties_typeProperties_blobEndpointUri')]"
 				},
 				"connectVia": {
-					"referenceName": "AutoResolveIntegrationRuntime",
+					"referenceName": "TestIntegrationRuntime",
 					"type": "IntegrationRuntimeReference"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
+				"[concat(variables('workspaceId'), '/integrationRuntimes/TestIntegrationRuntime')]"
 			]
 		},
 		{
@@ -385,7 +385,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "8219645d-3364-4521-a7ea-b6cc453af10d"
+						"spark.autotune.trackingId": "34c201bc-598d-4ba2-b1b3-67b9e1fcaf25"
 					}
 				},
 				"metadata": {
@@ -410,15 +410,13 @@
 						"sparkVersion": "3.3",
 						"nodeCount": 10,
 						"cores": 8,
-						"memory": 56,
-						"automaticScaleJobs": false
+						"memory": 56
 					},
 					"sessionKeepAliveTimeout": 30
 				},
 				"cells": [
 					{
 						"cell_type": "code",
-						"metadata": {},
 						"source": [
 							"print (\"Hello\")"
 						],
