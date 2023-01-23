@@ -1,10 +1,9 @@
 {
-	"name": "Pipeline 1",
+	"name": "samplePipeline",
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy sample ",
-				"description": "copy a sample file from source to target folder",
+				"name": "Copy data",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -39,11 +38,11 @@
 						"referenceName": "ds_source_binary",
 						"type": "DatasetReference",
 						"parameters": {
-							"ds_fileName": {
+							"fileName": {
 								"value": "@pipeline().parameters.pl_param_fileName",
 								"type": "Expression"
 							},
-							"ds_folderPath": {
+							"folderName": {
 								"value": "@pipeline().parameters.pl_param_folderPath",
 								"type": "Expression"
 							}
@@ -53,19 +52,23 @@
 				"outputs": [
 					{
 						"referenceName": "ds_target_binary",
-						"type": "DatasetReference"
+						"type": "DatasetReference",
+						"parameters": {
+							"folderName": {
+								"value": "target",
+								"type": "Expression"
+							}
+						}
 					}
 				]
 			}
 		],
 		"parameters": {
-			"pl_param_folderPath": {
-				"type": "string",
-				"defaultValue": "source"
-			},
 			"pl_param_fileName": {
-				"type": "string",
-				"defaultValue": "COVID_DATA_PII.csv"
+				"type": "string"
+			},
+			"pl_param_folderPath": {
+				"type": "string"
 			}
 		},
 		"annotations": []

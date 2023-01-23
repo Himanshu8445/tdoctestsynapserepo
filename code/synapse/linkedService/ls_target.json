@@ -7,7 +7,7 @@
 			"url": "https://strsynwstdoc001.dfs.core.windows.net/"
 		},
 		"connectVia": {
-			"referenceName": "TestIntegrationRuntime",
+			"referenceName": "AutoResolveIntegrationRuntime",
 			"type": "IntegrationRuntimeReference"
 		}
 	}
