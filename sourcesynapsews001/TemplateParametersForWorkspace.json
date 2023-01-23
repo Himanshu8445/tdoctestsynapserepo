@@ -8,7 +8,10 @@
 		"sourcesynapsews001-WorkspaceDefaultSqlServer_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:sourcesynapsews001.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
 		},
-		"sourcesynapsews001-WorkspaceDefaultStorage_properties_typeProperties_url": {
+		"sourcesynapsews001-WorkspaceDefaultSqlServer_properties_typeProperties_connectionString": {
+			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:sourcesynapsews001.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+		},
+		"sourcesynapsews001-WorkspaceDefaultStorage_properties_typeProperties_blobEndpointUri": {
 			"value": "https://strsynwstdoc001.dfs.core.windows.net"
 		}
 	}
