@@ -1,0 +1,74 @@
+{
+	"name": "Pipeline 1",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy sample ",
+				"description": "copy a sample file from source to target folder",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "BinarySource",
+						"storeSettings": {
+							"type": "AzureBlobFSReadSettings",
+							"recursive": true
+						},
+						"formatSettings": {
+							"type": "BinaryReadSettings"
+						}
+					},
+					"sink": {
+						"type": "BinarySink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						}
+					},
+					"enableStaging": false
+				},
+				"inputs": [
+					{
+						"referenceName": "ds_source_binary",
+						"type": "DatasetReference",
+						"parameters": {
+							"ds_fileName": {
+								"value": "@pipeline().parameters.pl_param_fileName",
+								"type": "Expression"
+							},
+							"ds_folderPath": {
+								"value": "@pipeline().parameters.pl_param_folderPath",
+								"type": "Expression"
+							}
+						}
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_target_binary",
+						"type": "DatasetReference",
+						"parameters": {
+							"ds_folderPath": "target"
+						}
+					}
+				]
+			}
+		],
+		"parameters": {
+			"pl_param_folderPath": {
+				"type": "string"
+			},
+			"pl_param_fileName": {
+				"type": "string"
+			}
+		},
+		"annotations": []
+	}
+}

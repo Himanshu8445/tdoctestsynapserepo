@@ -1,0 +1,32 @@
+{
+	"name": "ds_source_binary",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_source",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"ds_fileName": {
+				"type": "string"
+			},
+			"ds_folderPath": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().ds_fileName",
+					"type": "Expression"
+				},
+				"fileSystem": {
+					"value": "@dataset().ds_folderPath",
+					"type": "Expression"
+				}
+			}
+		}
+	}
+}
