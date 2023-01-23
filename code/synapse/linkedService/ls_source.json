@@ -1,0 +1,14 @@
+{
+	"name": "ls_source",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://strsynwstdoc001.dfs.core.windows.net/"
+		},
+		"connectVia": {
+			"referenceName": "TestIntegrationRuntime",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}
