@@ -8,11 +8,29 @@
 		"sourcesynapsews001-WorkspaceDefaultSqlServer_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:sourcesynapsews001.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
 		},
+		"ds_source_binary_properties_linkedServiceName_reference": {
+			"value": "ls_source"
+		},
+		"ds_target_binary_properties_linkedServiceName_reference": {
+			"value": "ls_target"
+		},
+		"ls_source_properties_typeProperties_blobEndpointUri": {
+			"value": "https://strsynwstdoc001.dfs.core.windows.net/"
+		},
+		"ls_target_properties_typeProperties_blobEndpointUri": {
+			"value": "https://strsynwstdoc001.dfs.core.windows.net/"
+		},
 		"sourcesynapsews001-WorkspaceDefaultSqlServer_properties_typeProperties_connectionString": {
 			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:sourcesynapsews001.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
 		},
 		"sourcesynapsews001-WorkspaceDefaultStorage_properties_typeProperties_blobEndpointUri": {
 			"value": "https://strsynwstdoc001.dfs.core.windows.net"
+		},
+		"Notebook 1_properties_bigDataPool_bigDataPoolReference": {
+			"value": "testPool"
+		},
+		"trigger_id": {
+			"value": "/subscriptions/be7051ef-9485-4207-b746-9f6a24b3cc8a/resourceGroups/testrg/providers/Microsoft.Storage/storageAccounts/strsynwstdoc001"
 		}
 	}
 }
