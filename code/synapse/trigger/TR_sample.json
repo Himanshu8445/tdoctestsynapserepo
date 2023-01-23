@@ -6,12 +6,12 @@
 		"pipelines": [
 			{
 				"pipelineReference": {
-					"referenceName": "Pipeline 1",
+					"referenceName": "samplePipeline",
 					"type": "PipelineReference"
 				},
 				"parameters": {
-					"pl_param_folderPath": "@triggerBody().folderPath",
-					"pl_param_fileName": "@triggerBody().fileName"
+					"pl_param_fileName": "@triggerBody().fileName",
+					"pl_param_folderPath": "@triggerBody().folderPath"
 				}
 			}
 		],
