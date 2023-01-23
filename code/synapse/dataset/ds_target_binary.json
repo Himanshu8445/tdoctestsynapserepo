@@ -5,12 +5,20 @@
 			"referenceName": "ls_target",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"folderName": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "Binary",
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileSystem": "target"
+				"fileSystem": {
+					"value": "@dataset().folderName",
+					"type": "Expression"
+				}
 			}
 		}
 	}
