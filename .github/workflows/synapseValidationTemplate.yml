@@ -49,7 +49,8 @@ jobs:
         uses: azure/synapse-workspace-deployment@V1.7.0
         with:
           TargetWorkspaceName: ${{ inputs.target_synapse_workspace_name }}
-          ArtifactsFolder: ${{ github.workspace }}
+          azure_resource_group_name: ${{ inputs.azure_resource_group_name }}
+          ArtifactsFolder: ${{ github.workspace }}/code/synapse
           operation: "validate"
           deployManagedPrivateEndpoint: false
           DeleteArtifactsNotInTemplate: false
