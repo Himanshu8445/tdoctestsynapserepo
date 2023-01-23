@@ -7,6 +7,10 @@
 			"metadata": "Workspace name",
 			"defaultValue": "sourcesynapsews001"
 		},
+		"trigger_id": {
+			"type": "string",
+			"defaultValue": ""
+		},
 		"sourcesynapsews001-WorkspaceDefaultSqlServer_connectionString": {
 			"type": "secureString",
 			"metadata": "Secure string for 'connectionString' of 'sourcesynapsews001-WorkspaceDefaultSqlServer'",
@@ -304,7 +308,7 @@
 				"typeProperties": {
 					"blobPathBeginsWith": "/source/blobs/",
 					"ignoreEmptyBlobs": true,
-					"scope": "/subscriptions/be7051ef-9485-4207-b746-9f6a24b3cc8a/resourceGroups/testrg/providers/Microsoft.Storage/storageAccounts/strsynwstdoc001",
+					"scope": "[parameters('trigger_id')]",
 					"events": [
 						"Microsoft.Storage.BlobCreated"
 					]
