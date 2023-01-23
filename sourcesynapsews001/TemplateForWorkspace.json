@@ -12,6 +12,10 @@
 			"metadata": "Secure string for 'connectionString' of 'sourcesynapsews001-WorkspaceDefaultSqlServer'",
 			"defaultValue": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:sourcesynapsews001.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
 		},
+		"trigger_storage_id": {
+			"type": "string",
+			"defaultValue": ""
+		},
 		"ds_source_binary_properties_linkedServiceName_reference": {
 			"type": "string",
 			"defaultValue": "ls_source"
@@ -306,7 +310,7 @@
 				"typeProperties": {
 					"blobPathBeginsWith": "/source/blobs/",
 					"ignoreEmptyBlobs": true,
-					"scope": "/subscriptions/be7051ef-9485-4207-b746-9f6a24b3cc8a/resourceGroups/testrg/providers/Microsoft.Storage/storageAccounts/strsynwstdoc001",
+					"scope": "[parameters('trigger_storage_id')]",
 					"events": [
 						"Microsoft.Storage.BlobCreated"
 					]
