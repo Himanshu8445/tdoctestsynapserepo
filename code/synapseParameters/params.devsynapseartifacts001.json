@@ -5,11 +5,29 @@
 		"workspaceName": {
 			"value": "devsynapseartifacts001"
 		},
-		"testsynapseartifacts-WorkspaceDefaultSqlServer_connectionString": {
+		"sourcesynapsews001-WorkspaceDefaultSqlServer_connectionString": {
 			"value": ""
 		},
-		"testsynapseartifacts-WorkspaceDefaultStorage_properties_typeProperties_url": {
+		"ds_source_binary_properties_linkedServiceName_reference": {
+			"value": "ls_source"
+		},
+		"ds_target_binary_properties_linkedServiceName_reference": {
+			"value": "ls_target"
+		},
+		"ls_source_properties_typeProperties_blobEndpointUri": {
+			"value": "https://strsynwstdoctarget001.dfs.core.windows.net/"
+		},
+		"ls_target_properties_typeProperties_blobEndpointUri": {
+			"value": "https://strsynwstdoctarget001.dfs.core.windows.net/"
+		},
+		"sourcesynapsews001-WorkspaceDefaultSqlServer_properties_typeProperties_connectionString": {
+			"value": ""
+		},
+		"sourcesynapsews001-WorkspaceDefaultStorage_properties_typeProperties_blobEndpointUri": {
 			"value": "https://strsynwstdoctarget001.dfs.core.windows.net"
+		},
+		"Notebook 1_properties_bigDataPool_bigDataPoolReference": {
+			"value": "testPool"
 		}
 	}
 }
