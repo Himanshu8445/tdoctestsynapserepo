@@ -1,0 +1,17 @@
+{
+	"name": "ds_target_binary",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_target",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Binary",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "target"
+			}
+		}
+	}
+}
