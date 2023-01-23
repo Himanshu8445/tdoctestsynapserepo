@@ -28,6 +28,9 @@
 		},
 		"Notebook 1_properties_bigDataPool_bigDataPoolReference": {
 			"value": "testPool"
+		},
+		"Notebook 3_properties_bigDataPool_bigDataPoolReference": {
+			"value": "testPool"
 		}
 	}
 }

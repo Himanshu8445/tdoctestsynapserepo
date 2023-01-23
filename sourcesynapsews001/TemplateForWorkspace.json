@@ -39,105 +39,16 @@
 		"Notebook 1_properties_bigDataPool_bigDataPoolReference": {
 			"type": "string",
 			"defaultValue": "testPool"
+		},
+		"Notebook 3_properties_bigDataPool_bigDataPoolReference": {
+			"type": "string",
+			"defaultValue": "testPool"
 		}
 	},
 	"variables": {
 		"workspaceId": "[concat('Microsoft.Synapse/workspaces/', parameters('workspaceName'))]"
 	},
 	"resources": [
-		{
-			"name": "[concat(parameters('workspaceName'), '/testPool')]",
-			"type": "Microsoft.Synapse/workspaces/bigDataPools",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"annotations": []
-			},
-			"dependsOn": []
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/Pipeline 1')]",
-			"type": "Microsoft.Synapse/workspaces/pipelines",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"activities": [
-					{
-						"name": "Copy sample ",
-						"description": "copy a sample file from source to target folder",
-						"type": "Copy",
-						"dependsOn": [],
-						"policy": {
-							"timeout": "0.12:00:00",
-							"retry": 0,
-							"retryIntervalInSeconds": 30,
-							"secureOutput": false,
-							"secureInput": false
-						},
-						"userProperties": [],
-						"typeProperties": {
-							"source": {
-								"type": "BinarySource",
-								"storeSettings": {
-									"type": "AzureBlobFSReadSettings",
-									"recursive": true
-								},
-								"formatSettings": {
-									"type": "BinaryReadSettings"
-								}
-							},
-							"sink": {
-								"type": "BinarySink",
-								"storeSettings": {
-									"type": "AzureBlobFSWriteSettings"
-								}
-							},
-							"enableStaging": false
-						},
-						"inputs": [
-							{
-								"referenceName": "ds_source_binary",
-								"type": "DatasetReference",
-								"parameters": {
-									"ds_fileName": {
-										"value": "@pipeline().parameters.pl_param_fileName",
-										"type": "Expression"
-									},
-									"ds_folderPath": {
-										"value": "@pipeline().parameters.pl_param_folderPath",
-										"type": "Expression"
-									}
-								}
-							}
-						],
-						"outputs": [
-							{
-								"referenceName": "ds_target_binary",
-								"type": "DatasetReference",
-								"parameters": {}
-							}
-						]
-					}
-				],
-				"policy": {
-					"elapsedTimeMetric": {},
-					"cancelAfter": {}
-				},
-				"parameters": {
-					"pl_param_folderPath": {
-						"type": "string",
-						"defaultValue": "source"
-					},
-					"pl_param_fileName": {
-						"type": "string",
-						"defaultValue": "COVID_DATA_PII.csv"
-					}
-				},
-				"annotations": []
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/datasets/ds_source_binary')]",
-				"[concat(variables('workspaceId'), '/datasets/ds_target_binary')]"
-			]
-		},
 		{
 			"name": "[concat(parameters('workspaceName'), '/ds_source_binary')]",
 			"type": "Microsoft.Synapse/workspaces/datasets",
@@ -148,10 +59,10 @@
 					"type": "LinkedServiceReference"
 				},
 				"parameters": {
-					"ds_fileName": {
+					"fileName": {
 						"type": "string"
 					},
-					"ds_folderPath": {
+					"folderName": {
 						"type": "string"
 					}
 				},
@@ -161,11 +72,11 @@
 					"location": {
 						"type": "AzureBlobFSLocation",
 						"fileName": {
-							"value": "@dataset().ds_fileName",
+							"value": "@dataset().filename",
 							"type": "Expression"
 						},
 						"fileSystem": {
-							"value": "@dataset().ds_folderPath",
+							"value": "@dataset().folderName",
 							"type": "Expression"
 						}
 					}
@@ -184,12 +95,20 @@
 					"referenceName": "[parameters('ds_target_binary_properties_linkedServiceName_reference')]",
 					"type": "LinkedServiceReference"
 				},
+				"parameters": {
+					"folderName": {
+						"type": "string"
+					}
+				},
 				"annotations": [],
 				"type": "Binary",
 				"typeProperties": {
 					"location": {
 						"type": "AzureBlobFSLocation",
-						"fileSystem": "target"
+						"fileSystem": {
+							"value": "@dataset().folderName",
+							"type": "Expression"
+						}
 					}
 				}
 			},
@@ -208,12 +127,12 @@
 					"url": "[parameters('ls_source_properties_typeProperties_blobEndpointUri')]"
 				},
 				"connectVia": {
-					"referenceName": "TestIntegrationRuntime",
+					"referenceName": "AutoResolveIntegrationRuntime",
 					"type": "IntegrationRuntimeReference"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('workspaceId'), '/integrationRuntimes/TestIntegrationRuntime')]"
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
 			]
 		},
 		{
@@ -227,12 +146,12 @@
 					"url": "[parameters('ls_target_properties_typeProperties_blobEndpointUri')]"
 				},
 				"connectVia": {
-					"referenceName": "TestIntegrationRuntime",
+					"referenceName": "AutoResolveIntegrationRuntime",
 					"type": "IntegrationRuntimeReference"
 				}
 			},
 			"dependsOn": [
-				"[concat(variables('workspaceId'), '/integrationRuntimes/TestIntegrationRuntime')]"
+				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
 			]
 		},
 		{
@@ -279,39 +198,6 @@
 			},
 			"dependsOn": [
 				"[concat(variables('workspaceId'), '/integrationRuntimes/AutoResolveIntegrationRuntime')]"
-			]
-		},
-		{
-			"name": "[concat(parameters('workspaceName'), '/TR_sample')]",
-			"type": "Microsoft.Synapse/workspaces/triggers",
-			"apiVersion": "2019-06-01-preview",
-			"properties": {
-				"annotations": [],
-				"runtimeState": "Started",
-				"pipelines": [
-					{
-						"pipelineReference": {
-							"referenceName": "Pipeline 1",
-							"type": "PipelineReference"
-						},
-						"parameters": {
-							"pl_param_folderPath": "@triggerBody().folderPath",
-							"pl_param_fileName": "@triggerBody().fileName"
-						}
-					}
-				],
-				"type": "BlobEventsTrigger",
-				"typeProperties": {
-					"blobPathBeginsWith": "/source/blobs/",
-					"ignoreEmptyBlobs": true,
-					"scope": "/subscriptions/be7051ef-9485-4207-b746-9f6a24b3cc8a/resourceGroups/testrg/providers/Microsoft.Storage/storageAccounts/strsynwstdoc001",
-					"events": [
-						"Microsoft.Storage.BlobCreated"
-					]
-				}
-			},
-			"dependsOn": [
-				"[concat(variables('workspaceId'), '/pipelines/Pipeline 1')]"
 			]
 		},
 		{
@@ -385,7 +271,7 @@
 						"spark.dynamicAllocation.enabled": "false",
 						"spark.dynamicAllocation.minExecutors": "2",
 						"spark.dynamicAllocation.maxExecutors": "2",
-						"spark.autotune.trackingId": "34c201bc-598d-4ba2-b1b3-67b9e1fcaf25"
+						"spark.autotune.trackingId": "72780e8e-fac4-4bd8-bfe9-6605b1b1a582"
 					}
 				},
 				"metadata": {
@@ -464,6 +350,71 @@
 						"cell_type": "code",
 						"source": [
 							"print (\"I am fine\")"
+						],
+						"outputs": [],
+						"execution_count": null
+					}
+				]
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('workspaceName'), '/Notebook 3')]",
+			"type": "Microsoft.Synapse/workspaces/notebooks",
+			"apiVersion": "2019-06-01-preview",
+			"properties": {
+				"nbformat": 4,
+				"nbformat_minor": 2,
+				"bigDataPool": {
+					"referenceName": "[parameters('Notebook 3_properties_bigDataPool_bigDataPoolReference')]",
+					"type": "BigDataPoolReference"
+				},
+				"sessionProperties": {
+					"driverMemory": "28g",
+					"driverCores": 4,
+					"executorMemory": "28g",
+					"executorCores": 4,
+					"numExecutors": 2,
+					"conf": {
+						"spark.dynamicAllocation.enabled": "false",
+						"spark.dynamicAllocation.minExecutors": "2",
+						"spark.dynamicAllocation.maxExecutors": "2",
+						"spark.autotune.trackingId": "95d459f6-8d45-4353-90bf-bb77351a239e"
+					}
+				},
+				"metadata": {
+					"saveOutput": true,
+					"enableDebugMode": false,
+					"kernelspec": {
+						"name": "synapse_pyspark",
+						"display_name": "Synapse PySpark"
+					},
+					"language_info": {
+						"name": "python"
+					},
+					"a365ComputeOptions": {
+						"id": "/subscriptions/be7051ef-9485-4207-b746-9f6a24b3cc8a/resourceGroups/testrg/providers/Microsoft.Synapse/workspaces/sourcesynapsews001/bigDataPools/testPool",
+						"name": "testPool",
+						"type": "Spark",
+						"endpoint": "https://sourcesynapsews001.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/testPool",
+						"auth": {
+							"type": "AAD",
+							"authResource": "https://dev.azuresynapse.net"
+						},
+						"sparkVersion": "3.3",
+						"nodeCount": 10,
+						"cores": 8,
+						"memory": 56,
+						"automaticScaleJobs": false
+					},
+					"sessionKeepAliveTimeout": 30
+				},
+				"cells": [
+					{
+						"cell_type": "code",
+						"metadata": {},
+						"source": [
+							"print (\"Hello\")"
 						],
 						"outputs": [],
 						"execution_count": null
