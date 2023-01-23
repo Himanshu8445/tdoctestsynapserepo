@@ -53,10 +53,7 @@
 				"outputs": [
 					{
 						"referenceName": "ds_target_binary",
-						"type": "DatasetReference",
-						"parameters": {
-							"ds_folderPath": "target"
-						}
+						"type": "DatasetReference"
 					}
 				]
 			}
