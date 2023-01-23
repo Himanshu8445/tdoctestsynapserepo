@@ -6,10 +6,10 @@
 			"value": "devsynapseartifacts001"
 		},
 		"testsynapseartifacts-WorkspaceDefaultSqlServer_connectionString": {
-			"value": "Integrated Security=False;Encrypt=True;Connection Timeout=30;Data Source=tcp:testsynapseartifacts.sql.azuresynapse.net,1433;Initial Catalog=@{linkedService().DBName}"
+			"value": ""
 		},
 		"testsynapseartifacts-WorkspaceDefaultStorage_properties_typeProperties_url": {
-			"value": "https://strsynwstdoc001.dfs.core.windows.net"
+			"value": "https://strsynwstdoctarget001.dfs.core.windows.net"
 		}
 	}
 }
