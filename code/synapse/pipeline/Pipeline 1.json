@@ -63,10 +63,12 @@
 		],
 		"parameters": {
 			"pl_param_folderPath": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "source"
 			},
 			"pl_param_fileName": {
-				"type": "string"
+				"type": "string",
+				"defaultValue": "COVID_DATA_PII.csv"
 			}
 		},
 		"annotations": []
