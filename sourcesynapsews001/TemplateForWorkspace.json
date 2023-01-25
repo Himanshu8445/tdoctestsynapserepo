@@ -16,6 +16,14 @@
 			"type": "string",
 			"defaultValue": ""
 		},
+		"bigdata_pool_id": {
+			"type": "string",
+			"defaultValue": ""
+		},
+		"spark_pool_endpoint": {
+			"type": "string",
+			"defaultValue": ""
+		},
 		"ds_source_binary_properties_linkedServiceName_reference": {
 			"type": "string",
 			"defaultValue": "ls_source"
@@ -405,10 +413,10 @@
 						"name": "python"
 					},
 					"a365ComputeOptions": {
-						"id": "/subscriptions/be7051ef-9485-4207-b746-9f6a24b3cc8a/resourceGroups/testrg/providers/Microsoft.Synapse/workspaces/sourcesynapsews001/bigDataPools/testPool",
+						"id": "[parameters('bigdata_pool_id')]",
 						"name": "testPool",
 						"type": "Spark",
-						"endpoint": "https://sourcesynapsews001.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/testPool",
+						"endpoint": "[parameters('spark_pool_endpoint')]",
 						"auth": {
 							"type": "AAD",
 							"authResource": "https://dev.azuresynapse.net"
@@ -515,10 +523,10 @@
 						"name": "python"
 					},
 					"a365ComputeOptions": {
-						"id": "/subscriptions/be7051ef-9485-4207-b746-9f6a24b3cc8a/resourceGroups/testrg/providers/Microsoft.Synapse/workspaces/sourcesynapsews001/bigDataPools/testPool",
+						"id": "[parameters('bigdata_pool_id')]",
 						"name": "testPool",
 						"type": "Spark",
-						"endpoint": "https://sourcesynapsews001.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/testPool",
+						"endpoint": "[parameters('spark_pool_endpoint')]",
 						"auth": {
 							"type": "AAD",
 							"authResource": "https://dev.azuresynapse.net"
