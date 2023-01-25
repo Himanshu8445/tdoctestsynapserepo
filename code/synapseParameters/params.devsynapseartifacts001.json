@@ -34,12 +34,6 @@
 		},
 		"trigger_storage_id": {
 			"value": "/subscriptions/be7051ef-9485-4207-b746-9f6a24b3cc8a/resourceGroups/targetsynapserg/providers/Microsoft.Storage/storageAccounts/strsynwstdoctarget001"
-		},
-		"bigdata_pool_id": {
-			"value": "/subscriptions/be7051ef-9485-4207-b746-9f6a24b3cc8a/resourceGroups/targetsynapserg/providers/Microsoft.Synapse/workspaces/devsynapseartifacts001/bigDataPools/testPool"
-		},
-		"spark_pool_endpoint": {
-			"value": "https://devsynapseartifacts001.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/testPool"
 		}
 	}
 }

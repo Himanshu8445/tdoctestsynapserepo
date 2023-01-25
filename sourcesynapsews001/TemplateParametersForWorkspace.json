@@ -34,12 +34,6 @@
 		},
 		"trigger_storage_id": {
 			"value": "/subscriptions/be7051ef-9485-4207-b746-9f6a24b3cc8a/resourceGroups/testrg/providers/Microsoft.Storage/storageAccounts/strsynwstdoc001"
-		},
-		"bigdata_pool_id": {
-			"value": "/subscriptions/be7051ef-9485-4207-b746-9f6a24b3cc8a/resourceGroups/testrg/providers/Microsoft.Synapse/workspaces/sourcesynapsews001/bigDataPools/testPool"
-		},
-		"spark_pool_endpoint": {
-			"value": "https://sourcesynapsews001.dev.azuresynapse.net/livyApi/versions/2019-11-01-preview/sparkPools/testPool"
 		}
 	}
 }
